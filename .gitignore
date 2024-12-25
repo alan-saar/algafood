@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### BANCO AUTOGERADO ###
+banco.db
