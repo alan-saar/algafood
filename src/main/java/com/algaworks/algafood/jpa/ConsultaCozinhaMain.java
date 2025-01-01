@@ -42,10 +42,17 @@ public class ConsultaCozinhaMain {
         // System.out.println("cozinha3: " + cozinha3.getNome());
 
         // atualiza
-        Cozinha cozinha4 = new Cozinha();
-        cozinha4.setId(1L);
-        cozinha4.setNome("Brasileira");
-        cadastroCozinha.salvar(cozinha4);
+        // Cozinha cozinha4 = new Cozinha();
+        // cozinha4.setId(1L);
+        // cozinha4.setNome("Brasileira");
+        // cadastroCozinha.salvar(cozinha4);
+
+
+        // exclui
+        Cozinha cozinha5 = new Cozinha();
+        cozinha5.setId(1L);
+        cadastroCozinha.remover(cozinha5);
+
 
     }
 
