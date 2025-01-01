@@ -36,6 +36,9 @@ public class ConsultaCozinhaMain {
         cozinha1 = cadastroCozinha.adicionar(cozinha1);
         cozinha2 = cadastroCozinha.adicionar(cozinha2);
 
+        Cozinha cozinha3 = cadastroCozinha.buscar(3L);
+        System.out.println("cozinha3: " + cozinha3.getNome());
+
     }
 
 }
