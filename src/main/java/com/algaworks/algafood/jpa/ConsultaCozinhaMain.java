@@ -22,11 +22,20 @@ public class ConsultaCozinhaMain {
         // pego o bean direto da aplicação
         CadastroCozinha cadastroCozinha = appContext.getBean(CadastroCozinha.class);
 
-        List<Cozinha> cozinhas = cadastroCozinha.listar();
+        // List<Cozinha> cozinhas = cadastroCozinha.listar();
+        // System.out.println("inicio");
+        // cozinhas.forEach(c -> System.out.println(c.getNome()));
+        // System.out.println("fim");
 
-        System.out.println("inicio");
-        cozinhas.forEach(c -> System.out.println(c.getNome()));
-        System.out.println("fim");
+        Cozinha cozinha1 = new Cozinha();
+        cozinha1.setNome("Brasileira");
+
+        Cozinha cozinha2 = new Cozinha();
+        cozinha2.setNome("Japonesa");
+
+        cozinha1 = cadastroCozinha.adicionar(cozinha1);
+        cozinha2 = cadastroCozinha.adicionar(cozinha2);
+
     }
 
 }

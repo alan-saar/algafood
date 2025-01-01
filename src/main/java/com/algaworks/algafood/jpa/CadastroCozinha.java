@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import com.algaworks.algafood.domain.model.Cozinha;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 
 /**
  * CadastroCozinha
@@ -19,5 +20,10 @@ public class CadastroCozinha {
         // TypedQuery<Cozinha> query = manager.createQuery("from cozinha", Cozinha.class);
         // return query.getResultList();
         return manager.createQuery("from Cozinha", Cozinha.class).getResultList();
+    }
+
+    @Transactional
+    public Cozinha adicionar(Cozinha cozinha) {
+        return manager.merge(cozinha);
     }
 }
