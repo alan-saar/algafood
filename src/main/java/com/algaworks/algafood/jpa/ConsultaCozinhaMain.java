@@ -5,6 +5,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContext;
 import com.algaworks.algafood.AlgafoodApiApplication;
 import com.algaworks.algafood.domain.model.Cozinha;
+import com.algaworks.algafood.domain.repository.CozinhaRepository;
 
 /**
  * ConsultaCozinhaMain
@@ -19,7 +20,7 @@ public class ConsultaCozinhaMain {
                 .run(args);
 
         // pego o bean direto da aplicação
-        CadastroCozinha cadastroCozinha = appContext.getBean(CadastroCozinha.class);
+        CozinhaRepository cadastroCozinha = appContext.getBean(CozinhaRepository.class);
 
         // lista
         // List<Cozinha> cozinhas = cadastroCozinha.listar();
