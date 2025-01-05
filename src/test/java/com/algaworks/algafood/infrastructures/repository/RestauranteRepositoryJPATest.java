@@ -1,5 +1,6 @@
 package com.algaworks.algafood.infrastructures.repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +28,9 @@ public class RestauranteRepositoryJPATest {
 
     @Test
     void deveRetornarAoMenosUmRestaurante() {
-        Restaurante restaurante = new Restaurante();
-        restaurante.setNome("Copo Sujo");
-        restauranteRepository.salvar(restaurante);
-
         List<Restaurante> restaurantes = restauranteRepository.listar();
-        assertThat(restaurantes.size()).isGreaterThan(0);
+        assertThat(restaurantes.size()).isGreaterThan(1);
+        System.out.println("Restaurante: " + restaurantes.get(0));
     }
 
     @Test
@@ -42,6 +40,7 @@ public class RestauranteRepositoryJPATest {
         cozinha = cozinhaRepository.salvar(cozinha);
         Restaurante restaurante = new Restaurante();
         restaurante.setNome("Copo Sujo");
+        restaurante.setTaxaFrete(new BigDecimal("10.5"));
         restaurante.setCozinha(cozinha);
         restauranteRepository.salvar(restaurante);
         assertThat(restaurante.getCozinha().getId()).isNotNull();
