@@ -2,3 +2,6 @@ GET https://api.github.com/users/algaworks/repos
 
 ###
 GET http://localhost:8080/cozinhas
+
+###
+GET http://localhost:8080/cozinhas/1
