@@ -17,8 +17,16 @@ public class CozinhaController {
     private CozinhaRepository cozinhaRepository;
 
 
+    // o produces faz entrar nesse método quando solicitar json
+    // @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping
     public List<Cozinha> listar() {
         return cozinhaRepository.listar();
     }
+
+    // o produces faz entrar nesse método quando solicitar xml
+    // @GetMapping(produces = MediaType.APPLICATION_XML_VALUE)
+    // public List<Cozinha> listarxml() {
+    // return cozinhaRepository.listar();
+    // }
 }
