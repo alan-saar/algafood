@@ -1,8 +1,18 @@
+@host=http://localhost:8080
+
 GET https://api.github.com/users/algaworks/repos
 
 ###
-GET http://localhost:8080/cozinhas
+GET {{host}}/cozinhas
 Accept: application/xml
 
 ###
-GET http://localhost:8080/cozinhas/1
+GET {{host}}/cozinhas/1
+
+###
+POST {{host}}/cozinhas
+Content-Type: application/json
+
+{
+   "nome": "Brasileira"
+}
