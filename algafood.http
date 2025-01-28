@@ -16,3 +16,11 @@ Content-Type: application/json
 {
    "nome": "Brasileira"
 }
+
+###
+PUT {{host}}/cozinhas/1
+Content-Type: application/json
+
+{
+  "nome": "Mexicana"
+}
