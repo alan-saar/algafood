@@ -3,9 +3,11 @@ package com.algaworks.algafood.api.controller;
 import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -72,5 +74,23 @@ public class CozinhaController {
 
         return ResponseEntity.notFound().build();
 
+    }
+
+    @DeleteMapping("/{cozinhaId}")
+    public ResponseEntity<Cozinha> remover(@PathVariable("cozinhaId") Long cozinhaId) {
+        try {
+            Cozinha cozinhaDb = cozinhaRepository.buscar(cozinhaId);
+            if (cozinhaDb != null) {
+                cozinhaRepository.remover(cozinhaDb);
+                return ResponseEntity.noContent().build();
+            }
+
+            return ResponseEntity.notFound().build();
+        } catch (DataIntegrityViolationException e) {
+            // cliente tentando excluir algo que não pode ser excluido é um erro do cliente
+            // no caso excluir uma cozinha que já é utilizada por um restaurante (tem chave estrangeira)
+            // tem o código 400 (bad request) que também pode ser utilizado mas é mais abrangente
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
     }
 }

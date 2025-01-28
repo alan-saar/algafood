@@ -24,3 +24,7 @@ Content-Type: application/json
 {
   "nome": "Mexicana"
 }
+
+###
+DELETE {{host}}/cozinhas/3
+
