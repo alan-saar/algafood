@@ -3,7 +3,6 @@ package com.algaworks.algafood.api.controller;
 import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import com.algaworks.algafood.api.model.CozinhasXMLWrapper;
+import com.algaworks.algafood.domain.exception.EntidadeEmUsoException;
+import com.algaworks.algafood.domain.exception.EntidadeNaoEncontradaException;
 import com.algaworks.algafood.domain.model.Cozinha;
 import com.algaworks.algafood.domain.repository.CozinhaRepository;
+import com.algaworks.algafood.domain.service.CadastroCozinhaService;
 
 // a anotação @RestController contém a anaotação @Controller e @ResponseBody
 @RestController
@@ -27,6 +29,9 @@ public class CozinhaController {
 
     @Autowired
     private CozinhaRepository cozinhaRepository;
+
+    @Autowired
+    private CadastroCozinhaService cadastroCozinha;
 
 
     // o produces faz entrar nesse método quando solicitar json
@@ -58,7 +63,7 @@ public class CozinhaController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Cozinha adicionar(@RequestBody Cozinha cozinha) {
-        return cozinhaRepository.salvar(cozinha);
+        return cadastroCozinha.salvar(cozinha);
     }
 
     @PutMapping("/{cozinhaId}")
@@ -79,14 +84,13 @@ public class CozinhaController {
     @DeleteMapping("/{cozinhaId}")
     public ResponseEntity<Cozinha> remover(@PathVariable("cozinhaId") Long cozinhaId) {
         try {
-            Cozinha cozinhaDb = cozinhaRepository.buscar(cozinhaId);
-            if (cozinhaDb != null) {
-                cozinhaRepository.remover(cozinhaDb);
-                return ResponseEntity.noContent().build();
-            }
+            cadastroCozinha.excluir(cozinhaId);
+            return ResponseEntity.noContent().build();
 
+        } catch (EntidadeNaoEncontradaException e) {
             return ResponseEntity.notFound().build();
-        } catch (DataIntegrityViolationException e) {
+
+        } catch (EntidadeEmUsoException e) {
             // cliente tentando excluir algo que não pode ser excluido é um erro do cliente
             // no caso excluir uma cozinha que já é utilizada por um restaurante (tem chave estrangeira)
             // tem o código 400 (bad request) que também pode ser utilizado mas é mais abrangente
