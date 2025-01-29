@@ -73,7 +73,7 @@ public class CozinhaController {
         if (cozinhaDb != null) {
             // cozinhaDb.setNome(cozinha.getNome());
             BeanUtils.copyProperties(cozinha, cozinhaDb, "id"); // ignora o atributo id. Do terceiro parâmetro para frente são parametros para ignorar
-            cozinhaDb = cozinhaRepository.salvar(cozinhaDb);
+            cozinhaDb = cadastroCozinha.salvar(cozinhaDb);
             return ResponseEntity.ok(cozinhaDb);
         }
 

@@ -28,3 +28,8 @@ Content-Type: application/json
 ###
 DELETE {{host}}/cozinhas/3
 
+###
+GET {{host}}/restaurantes
+
+###
+GET {{host}}/restaurantes/1
