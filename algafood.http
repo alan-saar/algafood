@@ -33,3 +33,15 @@ GET {{host}}/restaurantes
 
 ###
 GET {{host}}/restaurantes/1
+
+###
+POST {{host}}/restaurantes
+Content-Type: application/json
+
+{
+    "nome": "Copo imundo",
+    "taxaFrete": 12,
+    "cozinha": {
+        "id": 1
+    }
+}
