@@ -45,3 +45,15 @@ Content-Type: application/json
         "id": 1
     }
 }
+
+###
+PUT {{host}}/restaurantes/4
+Content-Type: application/json
+
+{
+    "nome": "Copo Imundo",
+    "taxaFrete": 5,
+    "cozinha": {
+        "id": 2
+    }
+}
