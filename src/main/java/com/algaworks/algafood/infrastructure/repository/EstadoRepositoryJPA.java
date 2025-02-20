@@ -31,6 +31,7 @@ public class EstadoRepositoryJPA implements EstadoRepository {
     }
 
     @Override
+    @Transactional
     public void remover(Estado estado) {
         estado = buscar(estado.getId());
         manager.remove(estado);

@@ -57,3 +57,53 @@ Content-Type: application/json
         "id": 2
     }
 }
+
+###
+GET {{host}}/estados
+
+###
+POST {{host}}/estados
+Content-Type: application/json
+
+{
+    "nome": "Rio de Janeiro"
+}
+
+###
+PUT {{host}}/estados/1
+Content-Type: application/json
+
+{
+    "nome": "Espirito Santo"
+}
+
+###
+DELETE {{host}}/estados/2
+
+###
+GET {{host}}/cidades
+
+###
+POST {{host}}/cidades
+Content-Type: application/json
+
+{
+    "nome" : "Angra dos Reis",
+    "estado": {
+       "id": 1
+    }
+}
+
+###
+PUT {{host}}/cidades/2
+Content-Type: application/json
+
+{
+    "nome" : "Angra dos Reis",
+    "estado": {
+        "id": 2
+    }
+}
+
+###
+DELETE {{host}}/cidades/2
